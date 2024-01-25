@@ -25,6 +25,7 @@ public class MainCanvas : MonoBehaviour
     public void SelectBuilding(int building)
     {
         buildingSelected = building;
+        GameObject.FindWithTag("Preview").GetComponent<Preview>().Kys();
     }
 
     void CursorPos()
