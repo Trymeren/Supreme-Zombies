@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Preview : MonoBehaviour
 {
-    public bool follow;
+    private Vector3 posOffset = new Vector3(0, 2, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +14,8 @@ public class Preview : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        ChangeColour();
+        FollowCursor();
     }
 
     public void Kys()
@@ -24,19 +25,11 @@ public class Preview : MonoBehaviour
 
     public void FollowCursor()
     {
-        follow = true;
-        StartCoroutine("MoveToCursor()");
+        transform.position = GameObject.Find("Cursor").transform.position + posOffset;
     }
 
-    private void MoveToCursor()
+    private void ChangeColour()
     {
-        for(int i = 0; i < 1;)
-        {
-            transform.position = GameObject.Find("Cursor").transform.position;
-            if(follow)
-            {
-                i++;
-            }
-        }
+        gameObject.GetComponent<Renderer>().material.SetColor("_Color", new Color(0, 0.85f, 0, 0.8f));
     }
 }
