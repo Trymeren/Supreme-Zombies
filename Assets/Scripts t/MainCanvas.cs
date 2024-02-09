@@ -25,13 +25,22 @@ public class MainCanvas : MonoBehaviour
     public void SelectBuilding(int building)
     {
         buildingSelected = building;
-        GameObject.FindWithTag("Preview").GetComponent<Preview>().Kys();
+
+        //Delete all already existing previews in the scene
+        GameObject[] previews = GameObject.FindGameObjectsWithTag("Preview");
+        for(int i = 0; i <= previews.Length - 1;)
+        {
+            if(previews[i] != null)
+            {
+                previews[i].gameObject.GetComponent<Preview>().Kys();
+            }
+            i++;
+        }
     }
 
     void CursorPos()
     {
         mousePos = new Vector3((Input.mousePosition.x - Screen.width/2) / (((Screen.width / 46) / 15.93f) * 9), 0, (Input.mousePosition.y - Screen.height/2) / (Screen.height / 45.7f));
-        Debug.Log(Screen.height + " and: " + Screen.width);
     }
 
 }
