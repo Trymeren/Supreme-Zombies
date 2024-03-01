@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+    [SerializeField] private float range;
+    [SerializeField] private float fireRate; //Per second
+    [SerializeField] private float damage = 1;
     [SerializeField] private GameObject bullet;
     private GameObject target;
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.FindWithTag("Enemy");
-        InvokeRepeating("Fire", 1.0f, 1.0f);
+        InvokeRepeating("Fire", 1.0f, 1/fireRate);
     }
 
     // Update is called once per frame
@@ -21,7 +23,28 @@ public class Building : MonoBehaviour
 
     void Fire()
     {
-        GameObject clone = Instantiate(bullet, transform.position, bullet.transform.rotation);
-        clone.GetComponent<Bullet>().target = target;
+        //Select target
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        float closestDistance = 10000;
+        GameObject closestEnemy = null;
+        for(int i = 0; i < enemies.Length;)
+        {
+            float distance = Vector3.Distance(transform.position, enemies[i].transform.position);
+            if(distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemies[i];
+            }
+            i++;
+        }
+        target = closestEnemy;
+
+        //fire projectile
+        if(target != null && closestDistance < range)
+        {
+            GameObject clone = Instantiate(bullet, transform.position, bullet.transform.rotation);
+            clone.GetComponent<Bullet>().target = target;
+            clone.GetComponent<Bullet>().damage = damage;
+        }
     }
 }

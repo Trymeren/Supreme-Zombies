@@ -7,6 +7,7 @@ TagManager:
   - Preview
   - Building
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX

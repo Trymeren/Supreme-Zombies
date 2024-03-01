@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMove : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     private Rigidbody enemyRb;
 
     private Vector3 targetPos;
 
     [SerializeField] private float speed;
+    public float health;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +24,12 @@ public class EnemyMove : MonoBehaviour
 
         //Move towards target
         enemyRb.velocity = (targetPos - gameObject.transform.position).normalized * speed;
+
+        //Check if dead
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
+
 }
