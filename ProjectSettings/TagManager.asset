@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Preview
   - Building
+  - Enemy
   layers:
   - Default
   - TransparentFX

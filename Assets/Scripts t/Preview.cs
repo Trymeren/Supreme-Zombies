@@ -34,7 +34,7 @@ public class Preview : MonoBehaviour
     //Check if placeable
     private void OnTriggerEnter(Collider other) 
     {
-        if(other.CompareTag("Building"))
+        if(other.CompareTag("Building")||other.CompareTag("Enemy")||other.CompareTag("Player"))
         {
             placeable++;
         }
@@ -42,7 +42,7 @@ public class Preview : MonoBehaviour
         
     private void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Building"))
+        if(other.CompareTag("Building")||other.CompareTag("Enemy")||other.CompareTag("Player"))
         {
             placeable--;
         }
