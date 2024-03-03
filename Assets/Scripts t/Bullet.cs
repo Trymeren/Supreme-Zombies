@@ -36,7 +36,6 @@ public class Bullet : MonoBehaviour
         {
             other.GetComponent<Enemy>().health -= damage;
             Destroy(gameObject);
-            Debug.Log("yes");
         }
     }
 }

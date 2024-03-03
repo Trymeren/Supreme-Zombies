@@ -12,7 +12,7 @@ public class Building : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Fire", 1.0f, 1/fireRate);
+        InvokeRepeating("Fire", 1, 1/fireRate);
     }
 
     // Update is called once per frame
@@ -46,5 +46,11 @@ public class Building : MonoBehaviour
             clone.GetComponent<Bullet>().target = target;
             clone.GetComponent<Bullet>().damage = damage;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Vector4(0.3f, 0, 0, 0.1f);
+        Gizmos.DrawSphere(transform.position, range);
     }
 }
