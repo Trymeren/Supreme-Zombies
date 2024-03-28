@@ -66,14 +66,9 @@ public class MainCanvas : MonoBehaviour
         buildMode = false;
 
         //Delete all already existing previews in the scene
-        GameObject[] previews = GameObject.FindGameObjectsWithTag("Preview");
-        for(int i = 0; i <= previews.Length - 1;)
+        if(GameObject.FindWithTag("Preview") != null)
         {
-            if(previews[i] != null)
-            {
-                previews[i].gameObject.GetComponent<Preview>().Kys();
-            }
-            i++;
+            Destroy(GameObject.FindWithTag("Preview"));
         }
     }
 }

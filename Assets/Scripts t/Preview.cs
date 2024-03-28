@@ -53,7 +53,10 @@ public class Preview : MonoBehaviour
     {
         yield return new WaitForSeconds(Time.deltaTime * 3);
 
-        Instantiate(mainCanvas.buildingPrefabs[mainCanvas.buildingSelected - 1], transform.position, transform.rotation);
+        if(mainCanvas.buildMode)
+        {
+            Instantiate(mainCanvas.buildingPrefabs[mainCanvas.buildingSelected - 1], transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 
@@ -69,13 +72,16 @@ public class Preview : MonoBehaviour
 
     private void ChangeColour()
     {
-        if(placeable > 0)
+        if (mainCanvas.buildMode)
         {
-            renderInst.GetComponent<Renderer>().material.SetColor("_Color", new Color(0.85f, 0, 0, 0.8f));
-        }
-        else
-        {
-            renderInst.GetComponent<Renderer>().material.SetColor("_Color", new Color(0, 0.85f, 0, 0.8f));
+            if(placeable > 0)
+            {
+                renderInst.GetComponent<Renderer>().material.SetColor("_Color", new Color(0.85f, 0, 0, 0.8f));
+            }
+            else
+            {
+                renderInst.GetComponent<Renderer>().material.SetColor("_Color", new Color(0, 0.85f, 0, 0.8f));
+            }
         }
         
     }

@@ -50,7 +50,13 @@ public class Building : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = new Vector4(0.3f, 0, 0, 0.1f);
-        Gizmos.DrawSphere(transform.position, range);
+        Gizmos.color = new Vector4(0.3f, 0, 0, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Vector4(0, 0.3f, 0, 0.5f);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
